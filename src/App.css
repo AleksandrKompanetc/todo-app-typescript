@@ -1,3 +1,7 @@
+body {
+  color:black;
+}
+
 .App {
   text-align: center;
 }
@@ -5,6 +9,14 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.todo {
+  list-style: none;
+}
+
+.delete-btn {
+  margin-left: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
