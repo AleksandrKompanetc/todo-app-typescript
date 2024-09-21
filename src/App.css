@@ -12,6 +12,9 @@ body {
 }
 
 .todo {
+  padding: 5px;
+  background-color: rgb(240, 44, 240);
+  border-radius: 5px;
   list-style: none;
 }
 
