@@ -1,7 +1,3 @@
-body {
-  color:black;
-}
-
 .App {
   text-align: center;
 }
@@ -11,15 +7,8 @@ body {
   pointer-events: none;
 }
 
-.todo {
-  padding: 5px;
-  background-color: rgb(240, 44, 240);
-  border-radius: 5px;
+.todo-li {
   list-style: none;
-}
-
-.delete-btn {
-  margin-left: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
