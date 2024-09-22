@@ -15,7 +15,8 @@ function App() {
 
   const addTask = (): void => {
     if (task.trim()) {
-    setTodos([...todos, {index: todos.length, text: task, completed: false}])
+    const newTask = {index: todos.length, text: task, completed: false}
+    setTodos([...todos, newTask])
     setTask('')
     }
   }
@@ -30,6 +31,19 @@ function App() {
       todo.index === index ? {...todo, completed: !todo.completed} : todo
     )
     setTodos(updatedTodos)
+  }
+
+  const editTask = (index: number): void => {
+    setIsEditing(true)
+    setCurrentTask(todos[index])
+  }
+
+  const updateTask = (): void => {
+    if (currentTask) {
+      const updatedTodos = todos.map((todo) => 
+        todo.
+      )
+    }
   }
 
   return (
