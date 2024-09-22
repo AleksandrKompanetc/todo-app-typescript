@@ -1,4 +1,4 @@
-import React, {useState, ChangeEvent} from 'react';
+import React, {useState, useEffect, ChangeEvent} from 'react';
 import './App.css';
 
 interface Task {
@@ -12,6 +12,17 @@ function App() {
   const [todos, setTodos] = useState<Task[]>([])
   const [isEditing, setIsEditing] = useState<boolean>(false)
   const [currentTask, setCurrentTask] = useState<Task | null>(null)
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem('todos')
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
 
   const addTask = (): void => {
     if (task.trim()) {
