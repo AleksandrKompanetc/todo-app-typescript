@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, ChangeEvent} from 'react';
 import './App.css';
 
 interface Task {
@@ -41,8 +41,19 @@ function App() {
   const updateTask = (): void => {
     if (currentTask) {
       const updatedTodos = todos.map((todo) => 
-        todo.
+        todo.index === currentTask.index ? {...todo, text: currentTask.text} : todo
       )
+      setTodos(updatedTodos)
+      setIsEditing(false)
+      setCurrentTask(null)
+    }
+  }
+
+  const handleChange = (e:ChangeEvent<HTMLInputElement>): void => {
+    if (isEditing && currentTask) {
+      setCurrentTask({...currentTask, text: e.target.value})
+    } else {
+      setTask(e.target.value)
     }
   }
 
@@ -51,12 +62,16 @@ function App() {
       <h1>Todo List</h1>
       <input 
         type="text"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
+        value={isEditing && currentTask ? currentTask.text : task}
+        onChange={handleChange}
         placeholder='Enter task...' 
       />
 
-      <button onClick={addTask}>Add Task</button>
+      {isEditing ? (
+        <button onClick={updateTask}>Update Task</button>
+      ) : (
+        <button onClick={addTask}>Add Task</button>
+      )}
 
       <ul>
         {todos.map((todo, index) => (
@@ -71,6 +86,7 @@ function App() {
               {todo.text}
             </span>
 
+            <button onClick={() => editTask(index)}>Edit Task</button>
             <button onClick={() => deleteTask(index)}>Delete</button>
           </li>
         ))}
